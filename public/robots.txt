@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+
+# AI 크롤러 명시 허용 (GEO 필수)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://get-stigma.com/sitemap.xml

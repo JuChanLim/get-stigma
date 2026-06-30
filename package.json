@@ -1,0 +1,12 @@
+{
+  "name": "get-stigma",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:dry": "node scripts/build.mjs --dry-run"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4"
+  }
+}
