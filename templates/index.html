@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GetStigma — 편견 없는 스킨케어 블로그</title>
+<meta name="description" content="편견 없는 스킨케어·라이프스타일 블로그. 루틴, 성분, 조언 중심.">
+<link rel="canonical" href="https://get-stigma.com/">
+<meta property="og:title" content="GetStigma">
+<meta property="og:description" content="편견 없는 스킨케어·라이프스타일 블로그. 루틴, 성분, 조언 중심.">
+<meta property="og:url" content="https://get-stigma.com/">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<script type="application/ld+json">{{JSON_LD}}</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #fafaf8; font-family: system-ui, -apple-system, sans-serif; color: #111; }
+a { color: inherit; text-decoration: none; }
+.iph { background: repeating-linear-gradient(-45deg, #f0f0f0 0, #f0f0f0 2px, #f7f7f7 2px, #f7f7f7 14px); display: flex; align-items: center; justify-content: center; }
+
+/* NAV */
+nav { border-bottom: 2.5px solid #111; background: #fff; }
+.nav-top { display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; border-bottom: 1px solid #e8e8e8; }
+.nav-archive { font-size: 10px; color: #aaa; letter-spacing: 0.15em; font-variant-caps: small-caps; }
+.nav-logo { font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 900; color: #111; letter-spacing: -0.02em; }
+.nav-date { font-size: 10px; color: #aaa; letter-spacing: 0.06em; }
+.nav-cats { display: flex; align-items: center; padding: 0 48px; }
+.nav-cat { font-size: 11px; font-weight: 700; color: #666; padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2.5px; letter-spacing: 0.04em; transition: color .15s; }
+.nav-cat:first-child { padding-left: 0; }
+.nav-cat.active, .nav-cat:hover { color: #111; border-bottom-color: #111; }
+
+/* MAIN GRID */
+.main-grid { display: grid; grid-template-columns: 1fr 1px 296px; border-bottom: 1px solid #e8e8e8; background: #fff; }
+.featured { padding: 40px 48px; }
+.featured-img { height: 240px; margin-bottom: 26px; border-radius: 2px; }
+.featured-cat { font-size: 10px; color: #b8222a; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 10px; }
+.featured-title { font-family: 'Playfair Display', Georgia, serif; font-size: 36px; font-weight: 900; color: #111; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 16px; cursor: pointer; transition: color .15s; }
+.featured-title:hover { color: #b8222a; }
+.featured-excerpt { font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 18px; max-width: 500px; }
+.featured-meta { font-size: 11px; color: #aaa; letter-spacing: 0.04em; }
+.grid-divider { background: #e8e8e8; }
+.side-list { display: flex; flex-direction: column; }
+.side-item { padding: 24px 28px; border-bottom: 1px solid #e8e8e8; cursor: pointer; flex: 1; transition: background .15s; }
+.side-item:last-child { border-bottom: none; }
+.side-item:hover { background: #fafaf8; }
+.side-img { height: 90px; margin-bottom: 12px; border-radius: 2px; }
+.side-cat { font-size: 9px; color: #b8222a; font-weight: 700; letter-spacing: 0.12em; display: block; margin-bottom: 6px; text-transform: uppercase; }
+.side-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #111; line-height: 1.3; margin-bottom: 5px; }
+.side-meta { font-size: 10px; color: #bbb; }
+
+/* RECENT 4-col */
+.recent-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid #e8e8e8; background: #fff; }
+.recent-item { padding: 20px 24px; border-right: 1px solid #e8e8e8; cursor: pointer; transition: background .15s; }
+.recent-item:first-child { padding-left: 48px; }
+.recent-item:last-child { border-right: none; }
+.recent-item:hover { background: #fafaf8; }
+.recent-cat { font-size: 9px; color: #bbb; display: block; margin-bottom: 4px; letter-spacing: 0.08em; }
+.recent-title { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; color: #111; line-height: 1.3; margin-bottom: 5px; }
+.recent-meta { font-size: 10px; color: #bbb; }
+
+/* MORE */
+.more-row { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid #e8e8e8; background: #fff; }
+
+/* FOOTER */
+footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; border-top: 2px solid #111; background: #fff; gap: 0; }
+.footer-brand { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; color: #111; margin-bottom: 8px; }
+.footer-desc { font-size: 11px; color: #bbb; line-height: 1.6; }
+.footer-nav { display: flex; flex-direction: column; gap: 8px; align-items: center; justify-content: center; }
+.footer-nav a { font-size: 11px; color: #666; cursor: pointer; font-variant-caps: small-caps; letter-spacing: 0.08em; transition: color .15s; }
+.footer-nav a:hover { color: #111; }
+.footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; justify-content: center; }
+.footer-copy { font-size: 10px; color: #ccc; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-top">
+    <span class="nav-archive">아카이브</span>
+    <a href="/" class="nav-logo">GetStigma</a>
+    <span class="nav-date">{{NAV_DATE}}</span>
+  </div>
+  <div class="nav-cats">
+    <a href="/" class="nav-cat active">전체</a>
+    <a href="/?cat=guide" class="nav-cat">가이드</a>
+    <a href="/?cat=ingredient" class="nav-cat">성분</a>
+    <a href="/?cat=routine" class="nav-cat">루틴</a>
+    <a href="/?cat=tip" class="nav-cat">팁</a>
+  </div>
+</nav>
+
+<main>
+  <!-- FEATURED + SIDE -->
+  <div class="main-grid">
+    {{FEATURED}}
+    <div class="grid-divider"></div>
+    <div class="side-list">{{SIDE_ARTICLES}}</div>
+  </div>
+
+  <!-- RECENT 4-COL -->
+  <div class="recent-grid">
+    {{RECENT_ARTICLES}}
+  </div>
+</main>
+
+<footer>
+  <div>
+    <div class="footer-brand">GetStigma</div>
+    <div class="footer-desc">편견 없는 스킨케어·<br>라이프스타일 블로그</div>
+  </div>
+  <nav class="footer-nav">
+    <a href="/?cat=guide">가이드</a>
+    <a href="/?cat=ingredient">성분</a>
+    <a href="/?cat=routine">루틴</a>
+  </nav>
+  <div class="footer-right">
+    <span class="footer-copy">© 2026 GetStigma</span>
+  </div>
+</footer>
+
+</body>
+</html>

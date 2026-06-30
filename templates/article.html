@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TITLE}} — GetStigma</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<link rel="canonical" href="{{URL}}">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:url" content="{{URL}}">
+<meta property="og:type" content="article">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<script type="application/ld+json">{{JSON_LD}}</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #fafaf8; font-family: system-ui, -apple-system, sans-serif; color: #111; }
+a { color: inherit; text-decoration: none; }
+
+/* NAV */
+nav.top-nav { border-bottom: 2.5px solid #111; background: #fff; }
+.nav-top { display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; border-bottom: 1px solid #e8e8e8; }
+.nav-archive { font-size: 10px; color: #aaa; letter-spacing: 0.15em; font-variant-caps: small-caps; }
+.nav-logo { font-family: 'Playfair Display', Georgia, serif; font-size: 28px; font-weight: 900; color: #111; letter-spacing: -0.02em; }
+.nav-date { font-size: 10px; color: #aaa; letter-spacing: 0.06em; }
+.nav-cats { display: flex; align-items: center; padding: 0 48px; }
+.nav-cat { font-size: 11px; font-weight: 700; color: #666; padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2.5px; letter-spacing: 0.04em; transition: color .15s; }
+.nav-cat:first-child { padding-left: 0; }
+.nav-cat:hover { color: #111; border-bottom-color: #111; }
+
+/* ARTICLE LAYOUT */
+.article-wrap { display: grid; grid-template-columns: 1fr 260px; border-bottom: 1px solid #e8e8e8; background: #fff; min-height: 600px; }
+
+/* ARTICLE MAIN */
+.article-main { padding: 44px 48px; border-right: 1px solid #e8e8e8; }
+.back-link { font-size: 11px; color: #aaa; cursor: pointer; display: inline-block; margin-bottom: 36px; transition: color .15s; }
+.back-link:hover { color: #111; }
+.article-cat { font-size: 10px; color: #b8222a; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 12px; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 900; color: #111; line-height: 1.05; margin-bottom: 18px; letter-spacing: -0.02em; }
+.article-meta { display: flex; align-items: center; gap: 16px; font-size: 11px; color: #aaa; margin-bottom: 32px; }
+.meta-dot { width: 3px; height: 3px; background: #ddd; border-radius: 50%; display: inline-block; }
+.article-rule { height: 1.5px; background: #111; margin-bottom: 32px; }
+.article-body { font-size: 16px; color: #333; line-height: 1.95; font-family: Georgia, serif; max-width: 580px; }
+.article-body h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #111; margin: 36px 0 14px; line-height: 1.2; }
+.article-body h3 { font-size: 17px; font-weight: 700; color: #111; margin: 28px 0 10px; }
+.article-body p { margin-bottom: 20px; }
+.article-body strong { color: #111; }
+.article-body blockquote { border-left: 3px solid #b8222a; padding: 12px 20px; margin: 24px 0; color: #555; font-style: italic; background: #fafaf8; }
+.article-body table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+.article-body th, .article-body td { border: 1px solid #e8e8e8; padding: 10px 14px; text-align: left; }
+.article-body th { background: #f5f5f5; font-weight: 700; font-family: system-ui, sans-serif; font-size: 12px; letter-spacing: 0.04em; }
+.article-body ol, .article-body ul { margin: 0 0 20px 20px; }
+.article-body li { margin-bottom: 8px; line-height: 1.8; }
+
+/* SIDEBAR */
+.article-sidebar { padding: 44px 28px; }
+.sidebar-label { font-size: 9px; font-weight: 700; color: #ccc; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 14px; }
+.sidebar-title { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 700; color: #111; line-height: 1.3; margin-bottom: 5px; cursor: pointer; transition: color .15s; }
+.sidebar-title:hover { color: #b8222a; }
+.sidebar-meta { font-size: 10px; color: #bbb; margin-bottom: 24px; }
+.sidebar-divider { height: 1px; background: #ebebeb; margin-bottom: 24px; }
+
+/* FOOTER */
+footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; border-top: 2px solid #111; background: #fff; }
+.footer-brand { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; color: #111; margin-bottom: 8px; }
+.footer-desc { font-size: 11px; color: #bbb; line-height: 1.6; }
+.footer-nav { display: flex; flex-direction: column; gap: 8px; align-items: center; justify-content: center; }
+.footer-nav a { font-size: 11px; color: #666; font-variant-caps: small-caps; letter-spacing: 0.08em; transition: color .15s; }
+.footer-nav a:hover { color: #111; }
+.footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; justify-content: center; }
+.footer-copy { font-size: 10px; color: #ccc; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="nav-top">
+    <span class="nav-archive">아카이브</span>
+    <a href="/" class="nav-logo">GetStigma</a>
+    <span class="nav-date">{{NAV_DATE}}</span>
+  </div>
+  <div class="nav-cats">
+    <a href="/" class="nav-cat">전체</a>
+    <a href="/?cat=guide" class="nav-cat">가이드</a>
+    <a href="/?cat=ingredient" class="nav-cat">성분</a>
+    <a href="/?cat=routine" class="nav-cat">루틴</a>
+    <a href="/?cat=tip" class="nav-cat">팁</a>
+  </div>
+</nav>
+
+<main>
+  <div class="article-wrap">
+    <article class="article-main">
+      <a href="/" class="back-link">← 목록으로</a>
+      <span class="article-cat">{{CATEGORY}}</span>
+      <h1 class="article-title">{{TITLE}}</h1>
+      <div class="article-meta">
+        <span>{{DATE}}</span>
+        <span class="meta-dot"></span>
+        <span>{{READ_TIME}}분 읽기</span>
+      </div>
+      <div class="article-rule"></div>
+      <div class="article-body">{{BODY}}</div>
+    </article>
+
+    <aside class="article-sidebar">
+      {{NEXT_ARTICLE}}
+      {{PREV_ARTICLE}}
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div>
+    <div class="footer-brand">GetStigma</div>
+    <div class="footer-desc">편견 없는 스킨케어·<br>라이프스타일 블로그</div>
+  </div>
+  <nav class="footer-nav">
+    <a href="/?cat=guide">가이드</a>
+    <a href="/?cat=ingredient">성분</a>
+    <a href="/?cat=routine">루틴</a>
+  </nav>
+  <div class="footer-right">
+    <span class="footer-copy">© 2026 GetStigma</span>
+  </div>
+</footer>
+
+</body>
+</html>
