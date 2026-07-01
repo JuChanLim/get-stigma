@@ -315,13 +315,6 @@ footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; 
     <a href="/" class="nav-logo">GetStigma</a>
     <span class="nav-date">${nd}</span>
   </div>
-  <div class="nav-cats">
-    <a href="/" class="nav-cat active">전체</a>
-    <a href="/?cat=guide" class="nav-cat">가이드</a>
-    <a href="/?cat=ingredient" class="nav-cat">성분</a>
-    <a href="/?cat=routine" class="nav-cat">루틴</a>
-    <a href="/?cat=tip" class="nav-cat">팁</a>
-  </div>
 </nav>
 <main>
   <div class="page-wrap">
@@ -436,13 +429,6 @@ footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; 
     <span class="nav-archive">아카이브</span>
     <a href="/" class="nav-logo">GetStigma</a>
     <span class="nav-date">${nd}</span>
-  </div>
-  <div class="nav-cats">
-    <a href="/" class="nav-cat">전체</a>
-    <a href="/?cat=guide" class="nav-cat">가이드</a>
-    <a href="/?cat=ingredient" class="nav-cat">성분</a>
-    <a href="/?cat=routine" class="nav-cat">루틴</a>
-    <a href="/?cat=tip" class="nav-cat">팁</a>
   </div>
 </nav>
 <main>
