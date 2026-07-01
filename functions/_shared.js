@@ -257,13 +257,14 @@ nav { border-bottom: 2.5px solid #111; background: #fff; }
 .nav-cat { font-size: 11px; font-weight: 700; color: #666; padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2.5px; letter-spacing: 0.04em; transition: color .15s; }
 .nav-cat:first-child { padding-left: 0; }
 .nav-cat.active, .nav-cat:hover { color: #111; border-bottom-color: #111; }
+.page-wrap { max-width: 1280px; margin: 0 auto; }
 .main-grid { display: grid; grid-template-columns: 1fr 1px 296px; border-bottom: 1px solid #e8e8e8; background: #fff; }
-.featured { padding: 40px 48px; }
+.featured { padding: 40px 48px; min-width: 0; }
 .featured-img { height: 240px; margin-bottom: 26px; border-radius: 2px; }
 .featured-cat { font-size: 10px; color: #b8222a; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 10px; }
 .featured-title { font-family: 'Playfair Display', Georgia, serif; font-size: 36px; font-weight: 900; color: #111; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 16px; cursor: pointer; transition: color .15s; }
 .featured-title:hover { color: #b8222a; }
-.featured-excerpt { font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 18px; max-width: 500px; }
+.featured-excerpt { font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 18px; }
 .featured-meta { font-size: 11px; color: #aaa; letter-spacing: 0.04em; }
 .grid-divider { background: #e8e8e8; }
 .side-list { display: flex; flex-direction: column; }
@@ -290,6 +291,19 @@ footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; 
 .footer-nav a:hover { color: #111; }
 .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; justify-content: center; }
 .footer-copy { font-size: 10px; color: #ccc; margin-top: 4px; }
+@media (max-width: 900px) {
+  .nav-top { padding: 12px 20px; }
+  .nav-cats { padding: 0 20px; }
+  .page-wrap .main-grid { grid-template-columns: 1fr; }
+  .grid-divider, .side-list { display: none; }
+  .featured { padding: 28px 20px; }
+  .featured-title { font-size: 26px; }
+  .recent-grid { grid-template-columns: 1fr 1fr; }
+  .recent-item:nth-child(2n) { border-right: none; }
+  .recent-item:first-child { padding-left: 20px; }
+  footer { grid-template-columns: 1fr; gap: 20px; padding: 24px 20px; }
+  .footer-right, .footer-nav { align-items: flex-start; }
+}
 </style>
 </head>
 <body>
@@ -308,12 +322,14 @@ footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; 
   </div>
 </nav>
 <main>
-  <div class="main-grid">
-    ${featuredBlock}
-    <div class="grid-divider"></div>
-    <div class="side-list">${sideBlock}</div>
+  <div class="page-wrap">
+    <div class="main-grid">
+      ${featuredBlock}
+      <div class="grid-divider"></div>
+      <div class="side-list">${sideBlock}</div>
+    </div>
+    <div class="recent-grid">${recentBlock}</div>
   </div>
-  <div class="recent-grid">${recentBlock}</div>
 </main>
 <footer>
   <div>
@@ -367,8 +383,9 @@ nav.top-nav { border-bottom: 2.5px solid #111; background: #fff; }
 .nav-cat { font-size: 11px; font-weight: 700; color: #666; padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2.5px; letter-spacing: 0.04em; transition: color .15s; }
 .nav-cat:first-child { padding-left: 0; }
 .nav-cat:hover { color: #111; border-bottom-color: #111; }
+.article-outer { max-width: 1280px; margin: 0 auto; }
 .article-wrap { display: grid; grid-template-columns: 1fr 260px; border-bottom: 1px solid #e8e8e8; background: #fff; min-height: 600px; }
-.article-main { padding: 44px 48px; border-right: 1px solid #e8e8e8; }
+.article-main { padding: 44px 48px; border-right: 1px solid #e8e8e8; min-width: 0; }
 .back-link { font-size: 11px; color: #aaa; display: inline-block; margin-bottom: 36px; transition: color .15s; }
 .back-link:hover { color: #111; }
 .article-cat { font-size: 10px; color: #b8222a; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 12px; }
@@ -376,7 +393,7 @@ nav.top-nav { border-bottom: 2.5px solid #111; background: #fff; }
 .article-meta { display: flex; align-items: center; gap: 16px; font-size: 11px; color: #aaa; margin-bottom: 32px; }
 .meta-dot { width: 3px; height: 3px; background: #ddd; border-radius: 50%; display: inline-block; }
 .article-rule { height: 1.5px; background: #111; margin-bottom: 32px; }
-.article-body { font-size: 16px; color: #333; line-height: 1.95; font-family: Georgia, serif; max-width: 580px; }
+.article-body { font-size: 16px; color: #333; line-height: 1.95; font-family: Georgia, serif; }
 .article-body h2 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #111; margin: 36px 0 14px; line-height: 1.2; }
 .article-body h3 { font-size: 17px; font-weight: 700; color: #111; margin: 28px 0 10px; }
 .article-body p { margin-bottom: 20px; }
@@ -401,6 +418,16 @@ footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; 
 .footer-nav a:hover { color: #111; }
 .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; justify-content: center; }
 .footer-copy { font-size: 10px; color: #ccc; margin-top: 4px; }
+@media (max-width: 900px) {
+  .nav-top { padding: 12px 20px; }
+  .nav-cats { padding: 0 20px; }
+  .article-wrap { grid-template-columns: 1fr; }
+  .article-sidebar { display: none; }
+  .article-main { padding: 28px 20px; border-right: none; }
+  .article-title { font-size: 28px; }
+  footer { grid-template-columns: 1fr; gap: 20px; padding: 24px 20px; }
+  .footer-right, .footer-nav { align-items: flex-start; }
+}
 </style>
 </head>
 <body>
@@ -419,6 +446,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; 
   </div>
 </nav>
 <main>
+  <div class="article-outer">
   <div class="article-wrap">
     <article class="article-main">
       <a href="/" class="back-link">← 목록으로</a>
@@ -436,6 +464,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; 
       ${nextArticleHtml(next)}
       ${prevArticleHtml(prev)}
     </aside>
+  </div>
   </div>
 </main>
 <footer>
