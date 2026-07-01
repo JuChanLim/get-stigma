@@ -248,6 +248,8 @@ export function renderIndex(articles) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
 <title>GetStigma — 편견 없는 스킨케어 블로그</title>
 <meta name="description" content="편견 없는 스킨케어·라이프스타일 블로그. 루틴, 성분, 조언 중심.">
 <link rel="canonical" href="https://get-stigma.com/">
@@ -357,6 +359,8 @@ export function renderArticle(a, next, prev) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
 <title>${a.title} — GetStigma</title>
 <meta name="description" content="${desc}">
 <link rel="canonical" href="${url}">
