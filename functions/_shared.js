@@ -221,13 +221,24 @@ export async function fetchArticleBySlug(env, brandId, slug) {
 
 export function renderIndex(articles) {
   const nd = navDate();
-  const featured = articles[0];
-  const sideArticles = articles.slice(1, 4);
-  const recentArticles = articles.slice(4, 8);
 
-  const featuredBlock = featured ? featuredHtml(featured) : "<p style='padding:48px;color:#aaa'>콘텐츠 준비 중입니다.</p>";
-  const sideBlock = sideArticles.map(sideArticleHtml).join("");
-  const recentBlock = recentArticles.map((a, i) => recentItemHtml(a, i === 0, i === recentArticles.length - 1)).join("");
+  const listHtml = articles.length === 0
+    ? `<div class="empty">콘텐츠 준비 중입니다.</div>`
+    : articles.map((a, i) => {
+        const num = String(i + 1).padStart(2, "0");
+        const cat = categoryLabel(a.content_type);
+        const isFeatured = i === 0;
+        return `
+<a href="/article/${a.slug}/" class="list-row${isFeatured ? " featured" : ""}">
+  <div class="list-num">${num}</div>
+  <div class="list-body">
+    <span class="list-cat">${cat}</span>
+    <div class="list-title">${a.title}</div>
+    ${isFeatured ? `<div class="list-excerpt">${excerpt(a.body_md || "", 120)}</div>` : ""}
+    <span class="list-meta">${fmtDate(a.created_at)} · ${readTime(a.body_md || "")}분 읽기</span>
+  </div>
+</a>`;
+      }).join("");
 
   return `<!DOCTYPE html>
 <html lang="ko">
@@ -247,7 +258,6 @@ export function renderIndex(articles) {
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: #fafaf8; font-family: system-ui, -apple-system, sans-serif; color: #111; }
 a { color: inherit; text-decoration: none; }
-.iph { background: repeating-linear-gradient(-45deg, #f0f0f0 0, #f0f0f0 2px, #f7f7f7 2px, #f7f7f7 14px); display: flex; align-items: center; justify-content: center; }
 nav { border-bottom: 2.5px solid #111; background: #fff; }
 .nav-top { display: flex; justify-content: space-between; align-items: center; padding: 14px 48px; border-bottom: 1px solid #e8e8e8; }
 .nav-archive { font-size: 10px; color: #aaa; letter-spacing: 0.15em; font-variant-caps: small-caps; }
@@ -257,33 +267,23 @@ nav { border-bottom: 2.5px solid #111; background: #fff; }
 .nav-cat { font-size: 11px; font-weight: 700; color: #666; padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2.5px; letter-spacing: 0.04em; transition: color .15s; }
 .nav-cat:first-child { padding-left: 0; }
 .nav-cat.active, .nav-cat:hover { color: #111; border-bottom-color: #111; }
-.page-wrap { max-width: 1280px; margin: 0 auto; }
-.main-grid { display: grid; grid-template-columns: 1fr 1px 296px; border-bottom: 1px solid #e8e8e8; background: #fff; }
-.featured { padding: 40px 48px; min-width: 0; }
-.featured-img { height: 240px; margin-bottom: 26px; border-radius: 2px; }
-.featured-cat { font-size: 10px; color: #b8222a; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 10px; }
-.featured-title { font-family: 'Playfair Display', Georgia, serif; font-size: 36px; font-weight: 900; color: #111; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 16px; cursor: pointer; transition: color .15s; }
-.featured-title:hover { color: #b8222a; }
-.featured-excerpt { font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 18px; }
-.featured-meta { font-size: 11px; color: #aaa; letter-spacing: 0.04em; }
-.grid-divider { background: #e8e8e8; }
-.side-list { display: flex; flex-direction: column; }
-.side-item { padding: 24px 28px; border-bottom: 1px solid #e8e8e8; cursor: pointer; flex: 1; transition: background .15s; }
-.side-item:last-child { border-bottom: none; }
-.side-item:hover { background: #fafaf8; }
-.side-img { height: 90px; margin-bottom: 12px; border-radius: 2px; }
-.side-cat { font-size: 9px; color: #b8222a; font-weight: 700; letter-spacing: 0.12em; display: block; margin-bottom: 6px; text-transform: uppercase; }
-.side-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: #111; line-height: 1.3; margin-bottom: 5px; }
-.side-meta { font-size: 10px; color: #bbb; }
-.recent-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid #e8e8e8; background: #fff; }
-.recent-item { padding: 20px 24px; border-right: 1px solid #e8e8e8; cursor: pointer; transition: background .15s; }
-.recent-item:first-child { padding-left: 48px; }
-.recent-item:last-child { border-right: none; }
-.recent-item:hover { background: #fafaf8; }
-.recent-cat { font-size: 9px; color: #bbb; display: block; margin-bottom: 4px; letter-spacing: 0.08em; }
-.recent-title { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700; color: #111; line-height: 1.3; margin-bottom: 5px; }
-.recent-meta { font-size: 10px; color: #bbb; }
-footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; border-top: 2px solid #111; background: #fff; }
+.page-wrap { max-width: 860px; margin: 0 auto; }
+.article-list { background: #fff; border-left: 1px solid #e8e8e8; border-right: 1px solid #e8e8e8; }
+.list-row { display: flex; gap: 28px; align-items: flex-start; padding: 24px 48px; border-bottom: 1px solid #e8e8e8; transition: background .15s; }
+.list-row:last-child { border-bottom: none; }
+.list-row:hover { background: #fafaf8; }
+.list-row.featured { padding: 40px 48px; border-bottom: 2px solid #e8e8e8; }
+.list-num { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 400; color: #ddd; min-width: 32px; line-height: 1.2; padding-top: 2px; }
+.list-row.featured .list-num { font-size: 28px; }
+.list-body { flex: 1; min-width: 0; }
+.list-cat { font-size: 10px; font-weight: 700; color: #b8222a; letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 8px; }
+.list-title { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: #111; line-height: 1.3; margin-bottom: 10px; transition: color .15s; }
+.list-row:hover .list-title { color: #b8222a; }
+.list-row.featured .list-title { font-size: 30px; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 14px; }
+.list-excerpt { font-size: 14px; color: #666; line-height: 1.75; margin-bottom: 12px; }
+.list-meta { font-size: 11px; color: #aaa; letter-spacing: 0.04em; }
+.empty { padding: 80px 48px; color: #aaa; font-size: 14px; text-align: center; }
+footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; border-top: 2px solid #111; background: #fff; margin-top: 0; }
 .footer-brand { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; color: #111; margin-bottom: 8px; }
 .footer-desc { font-size: 11px; color: #bbb; line-height: 1.6; }
 .footer-nav { display: flex; flex-direction: column; gap: 8px; align-items: center; justify-content: center; }
@@ -291,16 +291,13 @@ footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; 
 .footer-nav a:hover { color: #111; }
 .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; justify-content: center; }
 .footer-copy { font-size: 10px; color: #ccc; margin-top: 4px; }
-@media (max-width: 900px) {
+@media (max-width: 700px) {
   .nav-top { padding: 12px 20px; }
   .nav-cats { padding: 0 20px; }
-  .page-wrap .main-grid { grid-template-columns: 1fr; }
-  .grid-divider, .side-list { display: none; }
-  .featured { padding: 28px 20px; }
-  .featured-title { font-size: 26px; }
-  .recent-grid { grid-template-columns: 1fr 1fr; }
-  .recent-item:nth-child(2n) { border-right: none; }
-  .recent-item:first-child { padding-left: 20px; }
+  .list-row, .list-row.featured { padding: 20px; gap: 16px; }
+  .list-row.featured .list-title { font-size: 22px; }
+  .list-title { font-size: 16px; }
+  .list-num { font-size: 16px; min-width: 24px; }
   footer { grid-template-columns: 1fr; gap: 20px; padding: 24px 20px; }
   .footer-right, .footer-nav { align-items: flex-start; }
 }
@@ -323,12 +320,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; 
 </nav>
 <main>
   <div class="page-wrap">
-    <div class="main-grid">
-      ${featuredBlock}
-      <div class="grid-divider"></div>
-      <div class="side-list">${sideBlock}</div>
-    </div>
-    <div class="recent-grid">${recentBlock}</div>
+    <div class="article-list">${listHtml}</div>
   </div>
 </main>
 <footer>
