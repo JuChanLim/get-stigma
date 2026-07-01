@@ -3,6 +3,9 @@
 
 export const SITE_URL = "https://get-stigma.com";
 export const BRAND_NAME = "GetStigma";
+// 공식 소유 채널 — schema.org sameAs (엔티티 코러보레이션, GEO P3/P5).
+// 실재·직접 운영하는 URL만. 티스토리 = 동일 운영 오프페이지 채널.
+export const SAME_AS = ["https://get-stigma.tistory.com"];
 
 // ── 유틸 ─────────────────────────────────────────────────────────
 
@@ -84,7 +87,7 @@ export function siteJsonLd() {
   return JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "Organization", "@id": `${SITE_URL}/#organization`, "name": BRAND_NAME, "url": SITE_URL },
+      { "@type": "Organization", "@id": `${SITE_URL}/#organization`, "name": BRAND_NAME, "url": SITE_URL, "sameAs": SAME_AS },
       { "@type": "WebSite", "@id": `${SITE_URL}/#website`, "name": BRAND_NAME, "url": SITE_URL, "publisher": { "@id": `${SITE_URL}/#organization` }, "inLanguage": "ko" },
     ],
   });
@@ -94,7 +97,7 @@ export function articleJsonLd(a) {
   return JSON.stringify({
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "Organization", "@id": `${SITE_URL}/#organization`, "name": BRAND_NAME, "url": SITE_URL },
+      { "@type": "Organization", "@id": `${SITE_URL}/#organization`, "name": BRAND_NAME, "url": SITE_URL, "sameAs": SAME_AS },
       {
         "@type": "Article",
         "@id": `${SITE_URL}/article/${a.slug}/#article`,
@@ -334,6 +337,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; 
     <a href="/?cat=routine">루틴</a>
   </nav>
   <div class="footer-right">
+    <a href="https://get-stigma.tistory.com" target="_blank" rel="me noopener" style="font-size:11px;color:#666">티스토리</a>
     <span class="footer-copy">© 2026 GetStigma</span>
   </div>
 </footer>
@@ -470,6 +474,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; 
     <a href="/?cat=routine">루틴</a>
   </nav>
   <div class="footer-right">
+    <a href="https://get-stigma.tistory.com" target="_blank" rel="me noopener" style="font-size:11px;color:#666">티스토리</a>
     <span class="footer-copy">© 2026 GetStigma</span>
   </div>
 </footer>
