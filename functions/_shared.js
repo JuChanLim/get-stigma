@@ -187,7 +187,7 @@ export async function fetchAllArticles(env) {
 
   const content = await sbGet(
     env,
-    `brand_geo_content?brand_id=eq.${brandId}&status=eq.published&select=id,title,slug,body_md,created_at,updated_at,topic_id&order=created_at.desc`
+    `brand_geo_content?brand_id=eq.${brandId}&status=eq.published&publish_target=cs.{getstigma}&select=id,title,slug,body_md,created_at,updated_at,topic_id&order=created_at.desc`
   );
   if (!content?.length) return { brandId, articles: [] };
 
@@ -207,7 +207,7 @@ export async function fetchAllArticles(env) {
 export async function fetchArticleBySlug(env, brandId, slug) {
   const data = await sbGet(
     env,
-    `brand_geo_content?brand_id=eq.${brandId}&slug=eq.${slug}&status=eq.published&select=id,title,slug,body_md,created_at,updated_at,topic_id&limit=1`
+    `brand_geo_content?brand_id=eq.${brandId}&slug=eq.${slug}&status=eq.published&publish_target=cs.{getstigma}&select=id,title,slug,body_md,created_at,updated_at,topic_id&limit=1`
   );
   if (!data?.length) return null;
   const a = data[0];

@@ -122,6 +122,7 @@ async function fetchContent() {
     .select("id,title,slug,body_md,created_at,geo_score,topic_id")
     .eq("brand_id", brand.id)
     .eq("status", "published")
+    .contains("publish_target", ["getstigma"])
     .order("created_at", { ascending: false });
 
   if (error) throw new Error(error.message);
