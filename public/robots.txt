@@ -27,3 +27,9 @@ User-agent: Bingbot
 Allow: /
 
 Sitemap: https://get-stigma.com/sitemap.xml
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
