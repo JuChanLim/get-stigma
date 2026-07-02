@@ -104,7 +104,7 @@ export function articleJsonLd(a) {
         "headline": a.title,
         "description": excerpt(a.body_md || "", 160),
         "datePublished": a.created_at,
-        "dateModified": a.created_at,
+        "dateModified": a.updated_at || a.created_at,
         "url": `${SITE_URL}/article/${a.slug}/`,
         "publisher": { "@id": `${SITE_URL}/#organization` },
         "mainEntityOfPage": { "@type": "WebPage", "@id": `${SITE_URL}/article/${a.slug}/` },
@@ -187,7 +187,7 @@ export async function fetchAllArticles(env) {
 
   const content = await sbGet(
     env,
-    `brand_geo_content?brand_id=eq.${brandId}&status=eq.published&select=id,title,slug,body_md,created_at,topic_id&order=created_at.desc`
+    `brand_geo_content?brand_id=eq.${brandId}&status=eq.published&select=id,title,slug,body_md,created_at,updated_at,topic_id&order=created_at.desc`
   );
   if (!content?.length) return { brandId, articles: [] };
 
@@ -207,7 +207,7 @@ export async function fetchAllArticles(env) {
 export async function fetchArticleBySlug(env, brandId, slug) {
   const data = await sbGet(
     env,
-    `brand_geo_content?brand_id=eq.${brandId}&slug=eq.${slug}&status=eq.published&select=id,title,slug,body_md,created_at,topic_id&limit=1`
+    `brand_geo_content?brand_id=eq.${brandId}&slug=eq.${slug}&status=eq.published&select=id,title,slug,body_md,created_at,updated_at,topic_id&limit=1`
   );
   if (!data?.length) return null;
   const a = data[0];
@@ -439,7 +439,7 @@ footer { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 32px 48px; 
       <span class="article-cat">${cat}</span>
       <h1 class="article-title">${a.title}</h1>
       <div class="article-meta">
-        <span>${fmtDate(a.created_at)}</span>
+        <span>최종 업데이트 ${fmtDate(a.updated_at || a.created_at)}</span>
         <span class="meta-dot"></span>
         <span>${readTime(a.body_md || "")}분 읽기</span>
       </div>
